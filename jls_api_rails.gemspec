@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "jls_api_rails/version"
+require "jls_api/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "jls_api_rails"
-  spec.version       = JlsApiRails::VERSION
+  spec.version       = JLS::API::VERSION
   spec.authors       = ["Cihat Gündüz"]
   spec.email         = ["github@cihatguenduez.de"]
 
