@@ -5,7 +5,7 @@ require "jls_api/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "jls_api_rails"
-  spec.version       = JLS::API::VERSION
+  spec.version       = JlsApi::VERSION
   spec.authors       = ["Cihat Gündüz"]
   spec.email         = ["github@cihatguenduez.de"]
 

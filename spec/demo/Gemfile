@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '~> 2.5.0'
+ruby '2.5.0'
 
 # Easy to use JLS:API server framework for Ruby on Rails backends.
 gem 'jls_api_rails', path: '../..'

@@ -1,5 +1,5 @@
-RSpec.describe JLS::API do
+RSpec.describe JlsApi do
   it "has a version number" do
-    expect(JLS::API::VERSION).not_to be nil
+    expect(JlsApi::VERSION).not_to be nil
   end
 end

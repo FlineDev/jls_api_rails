@@ -20,6 +20,10 @@ Or install it yourself as:
 
     $ gem install jls_api_rails
 
+To complete the installation execute:
+
+    $ rails g jls_api:install
+
 ## Usage
 
 TODO: Write usage instructions here
