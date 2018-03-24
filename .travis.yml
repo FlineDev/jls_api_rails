@@ -8,7 +8,6 @@ before_install: gem install bundler -v 1.16.1
 before_script:
   - cd spec/demo && bundle install
   - psql -c 'create database jls_api_rails_demo_test;' -U postgres
-  - psql -U postgres -c "create extension postgis"
 script:
   - bundle exec rake
   - cd spec/demo && bundle exec rake
