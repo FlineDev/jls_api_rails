@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Flinesoft/jls_api_rails.svg?branch=stable)](https://travis-ci.org/Flinesoft/jls_api_rails)
+
 # JLS:API Rails
 
 Easy to use [JLS:API](https://github.com/JamitLabs/SimpleAPISpec) server framework for Ruby on Rails backends.
