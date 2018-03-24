@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Cihat Gündüz"]
   spec.email         = ["github@cihatguenduez.de"]
 
-  spec.summary       = %q{Simple & flexible JSON request & response formatting standard with built-in sorting & filtering features.}
-  spec.description   = %q{Simple & flexible JSON request & response formatting standard with built-in sorting & filtering features.}
+  spec.summary       = %q{Easy to use JLS:API server framework for Ruby on Rails backends.}
+  spec.description   = %q{Easy to use JLS:API server framework for Ruby on Rails backends.}
   spec.homepage      = "https://github.com/Flinesoft/jls_api_rails"
   spec.license       = "MIT"
 
