@@ -1,0 +1,8 @@
+actions:
+  - index
+  - create
+  - show
+  - update
+  - destroy
+index:
+  paginatable: true

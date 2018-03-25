@@ -1,0 +1,4 @@
+type: Category
+properties:
+  readwrite:
+    name: String

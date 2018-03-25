@@ -1,0 +1,12 @@
+type: Challenge
+properties:
+  readwrite:
+    title: String
+    description: String
+    endTime: DateTime
+    type: String
+    category: Category
+  readonly:
+    hasPassword: Boolean
+  writeonly:
+    password: String

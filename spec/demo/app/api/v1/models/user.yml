@@ -1,0 +1,7 @@
+type: User
+properties:
+  readwrite:
+    nickname: String
+    email: String
+  readonly:
+    createdChallenges: [Challenge]

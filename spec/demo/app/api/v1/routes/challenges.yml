@@ -1,0 +1,14 @@
+all:
+  includable:
+    - category
+index:
+  filterable:
+    - title
+    - endTime
+    - type
+    - category.identifier
+  sortable:
+    - title
+    - endTime
+    - type
+    - category.identifier

@@ -1,0 +1,6 @@
+index:
+  filterable:
+    - nickname
+    - email
+  sortable:
+    - nickname
