@@ -26,7 +26,13 @@ To complete the installation execute:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Endpoint Generator
+
+To create a new endpoint, say `/users`, just run this:
+
+    $ rails g jls_api:endpoint users
+
+This will generate files which you can edit to define your new API endpoint.
 
 ## Development
 
