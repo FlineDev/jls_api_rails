@@ -1,5 +1,5 @@
-require "jls_api/version"
+require 'jls_api/routes'
 
 module JlsApi
-  # Your code goes here...
+  # TODO: not yet implemented
 end

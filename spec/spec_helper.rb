@@ -1,5 +1,7 @@
 require "bundler/setup"
 require "jls_api"
+require "pry-byebug"
+require 'json_expressions/rspec'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
