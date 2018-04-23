@@ -2,9 +2,7 @@ require 'spec_helper'
 
 RSpec.describe 'Routes' do
   it 'loads routes within directory' do
-    JlsApi::Routes.instance.load_routes(version: 'v1', base_directory: "spec/demo/app/api", )
-
-    resulting_routes = JlsApi::Routes.instance.routes['v1']
+    resulting_routes = JlsApi::Routes.instance.load_routes(version: 'v1', base_directory: "spec/demo/app/api", )
 
     expect(resulting_routes.keys.count).to eq 3
     expect(resulting_routes.keys).to include('categories', 'challenges', 'users')

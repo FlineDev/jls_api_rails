@@ -5,7 +5,7 @@ require 'action_dispatch'
 module ActionDispatch::Routing
   class Mapper
     def jls_api(version)
-      JlsApi::Routes.instance.load_routes(version: version)
+      JlsApi::Routes.instance.append_routes(version: version)
     end
   end
 end
@@ -16,7 +16,7 @@ module JlsApi
 
     attr_accessor :routes
 
-    def load_routes(version:, base_directory: "app/api")
+    def load_routes(version:, base_directory:)
       directory = "#{base_directory}/#{version}/routes"
       default_routes_yaml_path = "#{directory}/default.yml"
       endpoint_routes_yaml_paths = Dir["#{directory}/*.yml"] - [default_routes_yaml_path]
@@ -40,6 +40,38 @@ module JlsApi
         end
 
         new_routes[endpoint] = combined_endpoint_routes
+      end
+
+      new_routes
+    end
+
+    def append_routes(version:, base_directory: "app/api")
+      new_routes = load_routes(version: version, base_directory: base_directory)
+
+      Rails.application.routes.draw do
+        namespace 'api' do
+          namespace version do
+            new_routes.keys.each do |endpoint|
+              new_routes[endpoint]['actions'].each do |action|
+                case action
+                when 'index'
+                  get endpoint, controller: endpoint, action: action
+                when 'create'
+                  post endpoint, controller: endpoint, action: action
+                when 'show'
+                  get "#{endpoint}/:id", controller: endpoint, action: action
+                when 'update'
+                  patch "#{endpoint}/:id", controller: endpoint, action: action
+                  put "#{endpoint}/:id", controller: endpoint, action: action
+                when 'destroy'
+                  delete "#{endpoint}/:id", controller: endpoint, action: action
+                else
+                  raise "unknown action '#{action}' specified on endpoint '#{endpoint}'"
+                end
+              end
+            end
+          end
+        end
       end
 
       @routes ||= {}

@@ -1,8 +1,11 @@
 module JlsApi
   class EndpointGenerator < Rails::Generators::NamedBase
     def create_files
+      titlecased_file_name = file_name.singularize.split('_').collect(&:capitalize).join
+      pluralized_titlecased_file_name = file_name.pluralize.split('_').collect(&:capitalize).join
+
       create_file "app/api/v1/models/#{file_name.singularize}.yml", <<-CONTENT
-type: #{file_name.singularize.split('_').collect(&:capitalize).join}
+type: #{titlecased_file_name}
 properties:
   readwrite:
     # propertyName: Type
@@ -24,6 +27,18 @@ index:
   sortable:
     # - attributePath
   # paginatable: booleanValue
+      CONTENT
+
+      create_file "app/api/v1/controllers/#{file_name.pluralize}_controller.rb", <<-CONTENT
+require 'jls_api'
+
+module Api
+  module V1
+    class #{pluralized_titlecased_file_name}Controller < JlsApi::Controller
+      # no need to override
+    end
+  end
+end
       CONTENT
     end
   end

@@ -1,3 +1,6 @@
+require 'jls_api'
+
 Rails.application.routes.draw do
-  # nothing here yet
+  # JLS:API router invocation
+  jls_api :v1
 end

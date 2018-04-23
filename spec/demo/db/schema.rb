@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20180130152338) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -26,8 +23,8 @@ ActiveRecord::Schema.define(version: 20180130152338) do
     t.string "description"
     t.datetime "end_time"
     t.string "type"
-    t.bigint "category_id"
-    t.bigint "creator_id"
+    t.integer "category_id"
+    t.integer "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_challenges_on_category_id"
@@ -41,6 +38,4 @@ ActiveRecord::Schema.define(version: 20180130152338) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "challenges", "categories"
-  add_foreign_key "challenges", "users", column: "creator_id"
 end
