@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20180130152338) do
     t.string "title"
     t.string "description"
     t.datetime "end_time"
-    t.string "type"
+    t.string "kind"
     t.integer "category_id"
     t.integer "creator_id"
     t.datetime "created_at", null: false

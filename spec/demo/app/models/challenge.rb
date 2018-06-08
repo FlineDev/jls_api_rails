@@ -8,6 +8,6 @@ class Challenge < ApplicationRecord
   ###
   ## Validations
   ###
-  validates :category, :creator, :type, presence: true
-  validates :type, inclusion: { in: ['tournament', 'season', 'open'] }
+  validates :category, :creator, :kind, presence: true
+  validates :kind, inclusion: { in: ['tournament', 'season', 'open'] }
 end
