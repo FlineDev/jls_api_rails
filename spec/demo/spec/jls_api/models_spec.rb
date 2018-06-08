@@ -20,6 +20,12 @@ RSpec.describe 'JlsApi::Models' do
       expect(result).not_to be_nil
       expect(result).to be_valid
     end
+
+    it 'fails with errors for invalid data' do
+      result = JlsApi::Models.instance.create(model_class: Challenge, attributes: nil)
+      expect(result).to be_instance_of(ActiveModel::Errors)
+      expect(result.keys).to eq([:category, :creator, :kind])
+    end
   end
 
   context 'show' do
@@ -32,6 +38,11 @@ RSpec.describe 'JlsApi::Models' do
       expect(result).not_to be_nil
       expect(result).to eq(@challenge)
     end
+
+    it 'is nil when challenge does not exist' do
+      result = JlsApi::Models.instance.show(model_class: Challenge, id: @challenge.id + 1)
+      expect(result).to be_nil
+    end
   end
 
   context 'update' do
@@ -40,11 +51,23 @@ RSpec.describe 'JlsApi::Models' do
     end
 
     it 'updates a specific challenge successfully' do
-      new_title = 'Some new title'
-      result = JlsApi::Models.instance.update(model_class: Challenge, id: @challenge.id, attributes: { title: new_title })
+      new_attributes = { title: 'Some new title' }
+      result = JlsApi::Models.instance.update(model_class: Challenge, id: @challenge.id, attributes: new_attributes)
       expect(result).not_to be_nil
       expect(result).to be_instance_of(Challenge)
-      expect(result.title).to eq(new_title)
+      expect(result.title).to eq(new_attributes[:title])
+    end
+
+    it 'fails with errors for invalid data' do
+      new_attributes = { creator: nil, category: nil, kind: nil }
+      result = JlsApi::Models.instance.update(model_class: Challenge, id: @challenge.id, attributes: new_attributes)
+      expect(result).to be_instance_of(ActiveModel::Errors)
+      expect(result.keys).to eq([:category, :creator, :kind])
+    end
+
+    it 'is nil when challenge does not exist' do
+      result = JlsApi::Models.instance.update(model_class: Challenge, id: @challenge.id + 1, attributes: {})
+      expect(result).to be_nil
     end
   end
 
@@ -55,8 +78,16 @@ RSpec.describe 'JlsApi::Models' do
 
     it 'destroys a challenge successfully' do
       expect(Challenge.count).to be > 0
-      JlsApi::Models.instance.destroy(model_class: Challenge, id: @challenge.id)
+      result = JlsApi::Models.instance.destroy(model_class: Challenge, id: @challenge.id)
+      expect(result).to be true
       expect(Challenge.count).to be == 0
+    end
+
+    it 'is nil when challenge does not exist' do
+      expect(Challenge.count).to be > 0
+      result = JlsApi::Models.instance.destroy(model_class: Challenge, id: @challenge.id + 1)
+      expect(result).to be_nil
+      expect(Challenge.count).to be > 0
     end
   end
 end

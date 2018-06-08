@@ -10,7 +10,7 @@ module JlsApi
       model_class.all
     end
 
-    # Returns the created model if creation successful, else returns the models errors hash.
+    # Returns the created model if creation successful, else returns the models errors.
     def create(model_class:, attributes:)
       new_object = model_class.new(attributes)
       return new_object if new_object.save
@@ -22,7 +22,7 @@ module JlsApi
       model_class.find_by(id: id)
     end
 
-    # Returns the updated model if update successful, `nil` if object not found, the models errors hash if update failed.
+    # Returns the updated model if update successful, `nil` if object not found, the models errors if update failed.
     def update(model_class:, id:, attributes:)
       object = model_class.find_by(id: id)
       return nil if object.nil?
@@ -30,11 +30,12 @@ module JlsApi
       object.errors
     end
 
-    # Returns true if destroy was successful, `nil` if object not found and false if destroy failed.
+    # Returns true if destroy was successful, `nil` if object not found, the models errors if destroy failed.
     def destroy(model_class:, id:)
       object = model_class.find_by(id: id)
       return nil if object.nil?
-      object.destroy
+      return true if object.destroy
+      object.errors
     end
   end
 end
